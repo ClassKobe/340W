@@ -1,0 +1,41 @@
+Synthetic experiment: 5 independent datasets (seeds [1, 2, 3, 4, 5]), 300 users each, 80/20 split by user.
+Mean (std) over datasets, test users only.
+
+A_unweighted_sum
+  pr_auc                             0.790 (0.036)
+  recall                             0.722 (0.066)
+  precision                          0.766 (0.049)
+  f1                                 0.741 (0.030)
+  unsafe_stepdown_rate               0.193 (0.055)
+  stepdown_offered_in_good_weeks     0.829 (0.038)
+
+B_any_symptom>=2
+  pr_auc                             0.517 (0.048)
+  recall                             0.934 (0.007)
+  precision                          0.319 (0.023)
+  f1                                 0.475 (0.026)
+  unsafe_stepdown_rate               0.032 (0.007)
+  stepdown_offered_in_good_weeks     0.187 (0.013)
+
+W_weighted_p>=0.5
+  pr_auc                             0.809 (0.035)
+  recall                             0.748 (0.037)
+  precision                          0.732 (0.045)
+  f1                                 0.739 (0.033)
+  unsafe_stepdown_rate               0.169 (0.033)
+  stepdown_offered_in_good_weeks     0.804 (0.026)
+
+W_weighted_f1tuned
+  pr_auc                             0.809 (0.035)
+  recall                             0.723 (0.050)
+  precision                          0.760 (0.058)
+  f1                                 0.739 (0.035)
+  unsafe_stepdown_rate               0.187 (0.042)
+  stepdown_offered_in_good_weeks     0.825 (0.033)
+
+Learned weights (seed 1): anxiety=0.65, insomnia=0.49, dizziness=0.48, irritability=0.38, nausea=0.34, headache=0.29, low_mood=0.41, fatigue=0.37; beta=0.00; tau=4.54
+
+Paired comparison, weighted minus unweighted-sum baseline, per dataset (mean, std):
+  PR-AUC:                      +0.019 (0.003)  weighted better in 5/5 datasets
+  Recall, p>=0.5 operating pt: +0.026 (0.040)  weighted better in 4/5 datasets
+  Recall, F1-tuned threshold:  +0.001 (0.031)  weighted better in 2/5 datasets
